@@ -274,8 +274,9 @@ class WaveSurfer extends Player<WaveSurferEvents> {
   }
 
   /** Get all registered plugins */
-  public getActivePlugins() {
-    return this.plugins
+  public getActivePlugins(pluginName?: string): GenericPlugin[] {
+    if (!pluginName) return this.plugins
+		return this.plugins.filter((plugin) => plugin.constructor.name === pluginName)
   }
 
   /** Load an audio file by URL, with optional pre-decoded audio data */
